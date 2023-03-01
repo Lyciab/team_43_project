@@ -7,6 +7,5 @@ module uk.ac.soton.comp2211.team_43_project {
 
     opens uk.ac.soton.comp2211.team_43_project to javafx.fxml;
     exports uk.ac.soton.comp2211.team_43_project;
-    exports uk.ac.soton.comp2211.team_43_project.scene;
     exports uk.ac.soton.comp2211.team_43_project.ui;
 }
