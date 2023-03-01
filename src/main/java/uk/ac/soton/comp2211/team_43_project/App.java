@@ -5,19 +5,75 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import uk.ac.soton.comp2211.team_43_project.ui.MainWindow;
+import uk.ac.soton.comp2211.team_43_project.ui.ToolWindow;
+
 import java.io.IOException;
 
 public class App extends Application {
-    @Override
-    public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("hello-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
-        stage.setTitle("Hello!");
-        stage.setScene(scene);
-        stage.show();
-    }
 
+    private static final Logger logger = LogManager.getLogger(App.class);
+    private static App instance;
+
+    /**Base resolution width. */
+    private final int width = 800;
+    /**Base resolution height. */
+    private final int height = 600;
+
+    private Stage stage;
+
+    /**
+     * Start the tool.
+     *
+     * @param args command line arguments
+     */
     public static void main(String[] args) {
+        logger.info("Starting client");
         launch();
     }
+
+    /**
+     * Get App instance.
+     *
+     * @return the app
+     */
+    public static App getInstance() {
+        return instance;
+    }
+
+    @Override
+    public void start(Stage stage) {
+
+        instance = this;
+        this.stage = stage;
+
+        stage.setTitle("Runway Redeclaration Tool");
+        stage.setOnCloseRequest(ev -> shutdown());
+
+        openTool();
+    }
+
+
+    public void openTool() {
+        logger.info("Opening tool window");
+
+//        var toolWindow = new ToolWindow(stage, width, height);
+        var window = new MainWindow(this);
+        stage.setScene(window.getScene());
+
+        stage.show();
+        stage.centerOnScreen();
+    }
+
+    /**
+     * Shutdown the tool.
+     */
+    public void shutdown() {
+        logger.info("Shutting down");
+        System.exit(0);
+    }
+
+
 }

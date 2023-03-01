@@ -1,0 +1,59 @@
+.toolpane {
+    -fx-background-color: black;
+}
+
+.tool-background {
+    -fx-background-color: #ffffff;
+    /*-fx-background-image: url("../images/1.jpg");*/
+    -fx-background-size: cover;
+}
+
+{
+    -fx-primary-colour: #e1e1e1;
+    -fx-secondary-colour: #c4c4c4;
+
+}
+.tab-generic {
+    -fx-alignment: center;
+    -fx-padding: 10;
+    -fx-spacing: 10;
+    -fx-background-color: -fx-primary-colour;
+    -fx-background-radius: 0 0 0 0;
+    /*-fx-border-color: #7c7c7c;*/
+    /*-fx-border-width: 1.25;*/
+    /*-fx-border-radius: 0 0 0 0;*/
+}
+
+.tab-pane .tab-header-area .tab-header-background {
+    -fx-opacity: 0;
+}
+
+.tab-pane
+{
+    -fx-tab-min-width:100px;
+}
+
+.tab-pane:top *.tab-header-area {
+    -fx-background-insets: 0, 0 0 0 0;
+    -fx-padding: 0 0 0 0
+}
+
+.tab-pane .tab {
+    -fx-background-color: -fx-secondary-colour;
+    -fx-border-radius: 0;
+}
+
+.tab-pane .tab:selected {
+    -fx-background-color: -fx-primary-colour;
+    -fx-border-radius: 0;
+}
+
+.tab{
+    -fx-background-insets: 0 1 0 1,0,0;
+}
+
+.tab-pane:focused .tab-header-area .headers-region .tab:selected .focus-indicator {
+    -fx-border-width: 0;
+    -fx-border-insets: 0 0 0 0;
+    -fx-border-radius: 0;
+}
