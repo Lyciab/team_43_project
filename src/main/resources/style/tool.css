@@ -1,13 +1,3 @@
-.toolpane {
-    -fx-background-color: black;
-}
-
-.tool-background {
-    -fx-background-color: #ffffff;
-    /*-fx-background-image: url("../images/1.jpg");*/
-    -fx-background-size: cover;
-}
-
 {
     -fx-primary-colour: #e1e1e1;
     -fx-secondary-colour: #c4c4c4;
@@ -56,4 +46,17 @@
     -fx-border-width: 0;
     -fx-border-insets: 0 0 0 0;
     -fx-border-radius: 0;
+}
+
+.split-pane *.split-pane-divider {
+    -fx-padding: 0 1 0 1;
+}
+
+.top-down-pane {
+    -fx-background-color:  #BCFFA9FF;
+    -fx-background-insets: 0 1 0 1,0,0;
+}
+
+.side-pane {
+    -fx-background-color: #C0FFEE;
 }

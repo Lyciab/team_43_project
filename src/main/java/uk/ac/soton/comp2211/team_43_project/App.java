@@ -56,9 +56,8 @@ public class App extends Application {
 
 
     public void openTool() {
-        logger.info("Opening tool window");
+        logger.info("Opening main window");
 
-//        var toolWindow = new ToolWindow(stage, width, height);
         var window = new MainWindow(this);
         stage.setScene(window.getScene());
 
@@ -74,5 +73,7 @@ public class App extends Application {
         System.exit(0);
     }
 
-
+    public Stage getStage() {
+        return stage;
+    }
 }

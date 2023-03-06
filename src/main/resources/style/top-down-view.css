@@ -1,0 +1,52 @@
+.pane {
+    -fx-background-color: #BCFFA9FF
+;
+}
+.text {
+    -fx-fill: #000000;
+}
+
+.runway {
+    -fx-background-color:  #a2aeb9;
+}
+
+.cleared-area {
+    -fx-background-color:  #409140;
+}
+{
+    -fx-tora-colour: WHITE;
+    -fx-toda-colour: #003cff;
+    -fx-asda-colour: #FF0092;
+    -fx-lda-colour: #ff7300
+;
+}
+.tora {
+    -fx-fill: -fx-tora-colour;
+    -fx-text-fill: -fx-tora-colour;
+    -fx-stroke: -fx-tora-colour;
+    -fx-font-weight: BOLD;
+}
+
+.toda {
+    -fx-fill: -fx-toda-colour;
+    -fx-stroke: -fx-toda-colour;
+    -fx-text-fill: -fx-toda-colour;
+    -fx-font-weight: BOLD;
+
+}
+
+.asda {
+    -fx-fill:-fx-asda-colour;
+    -fx-stroke: -fx-asda-colour;
+    -fx-text-fill: -fx-asda-colour;
+    -fx-font-weight: BOLD;
+
+}
+
+.lda {
+    -fx-fill: -fx-lda-colour;
+    -fx-stroke: -fx-lda-colour;
+    -fx-text-fill: -fx-lda-colour;
+    -fx-font-weight: BOLD;
+
+}

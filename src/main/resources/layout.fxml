@@ -33,20 +33,19 @@
 -->
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.SeparatorMenuItem?>
-<?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
@@ -55,22 +54,13 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<VBox cache="true" cacheHint="SCALE_AND_ROTATE" nodeOrientation="LEFT_TO_RIGHT" prefHeight="659.0" prefWidth="726.0" stylesheets="@style/tool.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
   <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>
         <Menu mnemonicParsing="false" text="File">
           <items>
-            <MenuItem mnemonicParsing="false" text="New" />
-            <MenuItem mnemonicParsing="false" text="Open…" />
-            <Menu mnemonicParsing="false" text="Open Recent" />
-            <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Close" />
-            <MenuItem mnemonicParsing="false" text="Save" />
-            <MenuItem mnemonicParsing="false" text="Save As…" />
-            <MenuItem mnemonicParsing="false" text="Revert" />
-            <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Preferences…" />
+            <MenuItem mnemonicParsing="false" text="Configure Airport..." />
             <SeparatorMenuItem mnemonicParsing="false" />
             <MenuItem mnemonicParsing="false" text="Quit" />
           </items>
@@ -80,171 +70,223 @@
             <MenuItem mnemonicParsing="false" text="Undo" />
             <MenuItem mnemonicParsing="false" text="Redo" />
             <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Cut" />
-            <MenuItem mnemonicParsing="false" text="Copy" />
-            <MenuItem mnemonicParsing="false" text="Paste" />
-            <MenuItem mnemonicParsing="false" text="Delete" />
-            <SeparatorMenuItem mnemonicParsing="false" />
             <MenuItem mnemonicParsing="false" text="Select All" />
             <MenuItem mnemonicParsing="false" text="Unselect All" />
           </items>
         </Menu>
         <Menu mnemonicParsing="false" text="Help">
           <items>
-            <MenuItem mnemonicParsing="false" text="About MyHelloApp" />
+            <MenuItem mnemonicParsing="false" text="About Tool" />
           </items>
         </Menu>
       </menus>
     </MenuBar>
-    <SplitPane dividerPositions="0.7" focusTraversable="true" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
-      <items>
-            <BorderPane prefHeight="200.0" prefWidth="200.0">
+      <HBox alignment="TOP_RIGHT" prefHeight="612.0" prefWidth="822.0" VBox.vgrow="ALWAYS">
+         <children>
+            <BorderPane HBox.hgrow="ALWAYS">
+               <center>
+                  <TabPane minHeight="700.0" minWidth="800.0" prefHeight="700.0" prefWidth="800.0" side="LEFT" tabClosingPolicy="UNAVAILABLE">
+                     <tabs>
+                        <Tab text="Top-Down View">
+                           <content>
+                              <BorderPane fx:id="topDownVewPane" prefHeight="617.0" prefWidth="669.0" styleClass="top-down-pane">
+                                 <center>
+                                    <AnchorPane fx:id="topDownViewPane" prefHeight="531.0" prefWidth="701.0" style="-fx-background-color: BCFFA9FF;" BorderPane.alignment="CENTER">
+
+                                    </AnchorPane>
+                                 </center>
+                              </BorderPane>
+                           </content>
+                           <content>
+                              <BorderPane fx:id="topDownViewContainer" prefHeight="200.0" prefWidth="200.0" styleClass="top-down-pane">
+                                 <center>
+                                    <AnchorPane fx:id="topDownViewPane" prefHeight="200.0" prefWidth="200.0" styleClass="top-down-pane" BorderPane.alignment="CENTER">
+                                       <BorderPane.margin>
+                                          <Insets left="100.0" right="100.0" top="170.0" />
+                                       </BorderPane.margin>
+                                    </AnchorPane>
+                                 </center>
+                                 <cursor>
+                                    <Cursor fx:constant="MOVE" />
+                                 </cursor>
+                              </BorderPane>
+                           </content>
+                        </Tab>
+                        <Tab text="Side View">
+                           <content>
+                              <BorderPane fx:id="sideViewContainer" prefHeight="617.0" prefWidth="669.0" style="-fx-background-color: C0FFEE;">
+                                 <center>
+                                    <AnchorPane fx:id="sideViewPane" prefHeight="200.0" prefWidth="200.0" styleClass="side-pane" BorderPane.alignment="CENTER">
+                                       <BorderPane.margin>
+                                          <Insets left="100.0" right="100.0" top="170.0" />
+                                       </BorderPane.margin></AnchorPane>
+                                 </center>
+                                 <cursor>
+                                    <Cursor fx:constant="MOVE" />
+                                 </cursor></BorderPane>
+                           </content>
+                        </Tab>
+                     </tabs>
+                  </TabPane>
+               </center>
                <top>
-                  <HBox prefHeight="40.0" prefWidth="616.0" spacing="5.0" BorderPane.alignment="CENTER_LEFT">
+                  <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="616.0" spacing="5.0" BorderPane.alignment="CENTER">
                      <children>
-                        <Label text="Runway in use" />
-                        <ChoiceBox prefWidth="150.0" />
+                        <Label text="Runway in use:" />
+                        <ChoiceBox fx:id="runwaySelect" prefHeight="25.0" prefWidth="211.0" HBox.hgrow="ALWAYS" />
+                        <RadioButton mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#toggleCompassDirection" text="Match compass direction:" textAlignment="CENTER" />
                      </children>
                      <BorderPane.margin>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                        <Insets bottom="5.0" left="20.0" right="5.0" top="5.0" />
                      </BorderPane.margin>
                   </HBox>
                </top>
-               <center>
-                  <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" BorderPane.alignment="CENTER">
-                    <items>
-                        <BorderPane prefHeight="200.0" prefWidth="200.0">
-                           <bottom>
-                              <HBox prefHeight="55.0" prefWidth="671.0" BorderPane.alignment="CENTER">
-                                 <children>
-                                    <Slider prefHeight="50.0" prefWidth="622.0" />
-                                 </children>
-                              </HBox>
-                           </bottom>
-                           <center>
-                              <ImageView fitHeight="210.0" fitWidth="762.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
-                                 <image>
-                                    <Image url="@images/satellite-top-down-view.png" />
-                                 </image>
-                              </ImageView>
-                           </center>
-                        </BorderPane>
-                        <SplitPane dividerPositions="0.5" prefHeight="212.0" prefWidth="626.0">
-                          <items>
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="236.0" prefWidth="298.0">
-                                 <children>
-                                    <ImageView fitHeight="204.0" fitWidth="382.0" layoutX="-36.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@images/top-down-view.png" />
-                                       </image>
-                                    </ImageView>
-                                 </children>
-                              </AnchorPane>
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="236.0" prefWidth="336.0">
-                                 <children>
-                                    <ImageView fitHeight="136.0" fitWidth="308.0" layoutX="1.0" layoutY="140.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@images/size-view.png" />
-                                       </image>
-                                    </ImageView>
-                                 </children>
-                              </AnchorPane>
-                          </items>
-                        </SplitPane>
-                    </items>
-                  </SplitPane>
-               </center>
             </BorderPane>
-        <AnchorPane>
-               <children>
-                  <TabPane prefHeight="552.0" prefWidth="265.0" tabClosingPolicy="UNAVAILABLE">
-                    <tabs>
-                      <Tab text="Calculations">
-                        <content>
-                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="171.0" prefWidth="253.0">
-                                 <children>
-                                    <VBox prefHeight="520.0" prefWidth="266.0">
+          <SplitPane focusTraversable="true" prefHeight="-1.0" prefWidth="-1.0">
+            <items>
+              <AnchorPane>
+                     <children>
+                        <TabPane prefHeight="552.0" prefWidth="265.0" tabClosingPolicy="UNAVAILABLE">
+                          <tabs>
+                            <Tab text="Calculations">
+                              <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                        <children>
-                                          <Label text="Obstacle Location" />
-                                          <ChoiceBox prefWidth="150.0" />
-                                          <Label layoutX="15.0" layoutY="20.0" text="Select Obstacle">
+                                          <VBox prefHeight="520.0" prefWidth="266.0">
+                                             <children>
+                                                <BorderPane prefHeight="218.0" prefWidth="256.0">
+                                                   <right>
+                                                      <VBox alignment="TOP_RIGHT" prefHeight="96.0" prefWidth="73.0" spacing="10.0" BorderPane.alignment="CENTER">
+                                                         <children>
+                                                            <TextField fx:id="textTORA" alignment="CENTER_RIGHT" onAction="#inputTORA" prefHeight="25.0" prefWidth="56.0" />
+                                                            <TextField alignment="CENTER_RIGHT" prefHeight="25.0" prefWidth="44.0" />
+                                                            <TextField prefHeight="25.0" prefWidth="44.0" />
+                                                            <TextField alignment="CENTER_RIGHT" prefHeight="25.0" prefWidth="44.0" />
+                                                         </children>
+                                                      </VBox>
+                                                   </right>
+                                                   <left>
+                                                      <VBox prefHeight="96.0" prefWidth="166.0" spacing="20.0" BorderPane.alignment="CENTER">
+                                                         <children>
+                                                            <Label text="TORA">
+                                                               <padding>
+                                                                  <Insets right="10.0" />
+                                                               </padding>
+                                                            </Label>
+                                                            <Label text="TODA">
+                                                               <padding>
+                                                                  <Insets right="10.0" />
+                                                               </padding>
+                                                            </Label>
+                                                            <Label text="ASDA">
+                                                               <padding>
+                                                                  <Insets right="10.0" />
+                                                               </padding>
+                                                            </Label>
+                                                            <Label text="LDA">
+                                                               <padding>
+                                                                  <Insets right="10.0" />
+                                                               </padding>
+                                                            </Label>
+                                                         </children>
+                                                      </VBox>
+                                                   </left>
+                                                   <padding>
+                                                      <Insets top="5.0" />
+                                                   </padding>
+                                                </BorderPane>
+                                             </children>
                                              <padding>
-                                                <Insets top="10.0" />
+                                                <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
                                              </padding>
-                                          </Label>
-                                          <ChoiceBox layoutX="15.0" layoutY="38.0" prefWidth="150.0" />
-                                          <BorderPane prefHeight="218.0" prefWidth="256.0">
-                                             <right>
-                                                <VBox alignment="TOP_RIGHT" prefHeight="96.0" prefWidth="73.0" spacing="10.0" BorderPane.alignment="CENTER">
-                                                   <children>
-                                                      <TextField alignment="CENTER_RIGHT" prefHeight="25.0" prefWidth="56.0" />
-                                                      <TextField alignment="CENTER_RIGHT" prefHeight="25.0" prefWidth="44.0" />
-                                                      <ChoiceBox prefHeight="25.0" prefWidth="64.0" />
-                                                      <TextField prefHeight="25.0" prefWidth="44.0" />
-                                                   </children>
-                                                </VBox>
-                                             </right>
-                                             <left>
-                                                <VBox prefHeight="96.0" prefWidth="166.0" spacing="20.0" BorderPane.alignment="CENTER">
-                                                   <children>
-                                                      <Label text="Obstacle Distance from THR">
-                                                         <padding>
-                                                            <Insets right="10.0" />
-                                                         </padding>
-                                                      </Label>
-                                                      <Label text="Obstacle Distance from C/L">
-                                                         <padding>
-                                                            <Insets right="10.0" />
-                                                         </padding>
-                                                      </Label>
-                                                      <Label text="Obstacle Distance from THR">
-                                                         <padding>
-                                                            <Insets right="10.0" />
-                                                         </padding>
-                                                      </Label>
-                                                      <Label text="Obstacle Height">
-                                                         <padding>
-                                                            <Insets right="10.0" />
-                                                         </padding>
-                                                      </Label>
-                                                   </children>
-                                                </VBox>
-                                             </left>
-                                             <padding>
-                                                <Insets top="5.0" />
-                                             </padding>
-                                          </BorderPane>
-                                          <Label text="New Declared Distances" />
-                                          <TextArea prefHeight="140.0" prefWidth="256.0">
-                                             <padding>
-                                                <Insets bottom="5.0" top="5.0" />
-                                             </padding>
-                                          </TextArea>
-                                          <TextArea prefHeight="145.0" prefWidth="256.0">
-                                             <padding>
-                                                <Insets bottom="5.0" top="5.0" />
-                                             </padding>
-                                          </TextArea>
+                                          </VBox>
                                        </children>
-                                       <padding>
-                                          <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
-                                       </padding>
-                                    </VBox>
-                                 </children>
-                              </AnchorPane>
-                        </content>
-                      </Tab>
-                      <Tab text="Edit Obastacles">
-                        <content>
-                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                        </content>
-                      </Tab>
-                    </tabs>
-                  </TabPane>
-               </children>
-        </AnchorPane>
-      </items>
-    </SplitPane>
+                                    </AnchorPane>
+                              </content>
+                            </Tab>
+                            <Tab text="Edit Obstacles">
+                              <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="171.0" prefWidth="253.0">
+                                       <children>
+                                          <VBox prefHeight="520.0" prefWidth="266.0">
+                                             <children>
+                                                <Label text="Obstacle Location" />
+                                                <ChoiceBox prefWidth="150.0" />
+                                                <Label layoutX="15.0" layoutY="20.0" text="Select Obstacle">
+                                                   <padding>
+                                                      <Insets top="10.0" />
+                                                   </padding>
+                                                </Label>
+                                                <ChoiceBox layoutX="15.0" layoutY="38.0" prefWidth="150.0" />
+                                                <BorderPane prefHeight="218.0" prefWidth="256.0">
+                                                   <right>
+                                                      <VBox alignment="TOP_RIGHT" prefHeight="96.0" prefWidth="73.0" spacing="10.0" BorderPane.alignment="CENTER">
+                                                         <children>
+                                                            <TextField alignment="CENTER_RIGHT" prefHeight="25.0" prefWidth="56.0" />
+                                                            <TextField alignment="CENTER_RIGHT" prefHeight="25.0" prefWidth="44.0" />
+                                                            <ChoiceBox prefHeight="25.0" prefWidth="64.0" />
+                                                            <TextField prefHeight="25.0" prefWidth="44.0" />
+                                                         </children>
+                                                      </VBox>
+                                                   </right>
+                                                   <left>
+                                                      <VBox prefHeight="96.0" prefWidth="166.0" spacing="20.0" BorderPane.alignment="CENTER">
+                                                         <children>
+                                                            <Label text="Obstacle Distance from THR">
+                                                               <padding>
+                                                                  <Insets right="10.0" />
+                                                               </padding>
+                                                            </Label>
+                                                            <Label text="Obstacle Distance from C/L">
+                                                               <padding>
+                                                                  <Insets right="10.0" />
+                                                               </padding>
+                                                            </Label>
+                                                            <Label text="Obstacle Runway Side">
+                                                               <padding>
+                                                                  <Insets right="10.0" />
+                                                               </padding>
+                                                            </Label>
+                                                            <Label text="Obstacle Height">
+                                                               <padding>
+                                                                  <Insets right="10.0" />
+                                                               </padding>
+                                                            </Label>
+                                                         </children>
+                                                      </VBox>
+                                                   </left>
+                                                   <padding>
+                                                      <Insets top="5.0" />
+                                                   </padding>
+                                                </BorderPane>
+                                                <Label text="New Declared Distances" />
+                                                <TextArea prefHeight="140.0" prefWidth="256.0">
+                                                   <padding>
+                                                      <Insets bottom="5.0" top="5.0" />
+                                                   </padding>
+                                                </TextArea>
+                                                <TextArea prefHeight="145.0" prefWidth="256.0">
+                                                   <padding>
+                                                      <Insets bottom="5.0" top="5.0" />
+                                                   </padding>
+                                                </TextArea>
+                                             </children>
+                                             <padding>
+                                                <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
+                                             </padding>
+                                          </VBox>
+                                       </children>
+                                    </AnchorPane>
+                              </content>
+                            </Tab>
+                          </tabs>
+                        </TabPane>
+                     </children>
+              </AnchorPane>
+            </items>
+          </SplitPane>
+         </children>
+      </HBox>
     <HBox id="HBox" alignment="CENTER_LEFT" spacing="5.0" VBox.vgrow="NEVER">
       <children>
         <Label maxHeight="1.7976931348623157E308" maxWidth="-1.0" HBox.hgrow="ALWAYS">
@@ -263,4 +305,7 @@
       </padding>
     </HBox>
   </children>
+   <cursor>
+      <Cursor fx:constant="DEFAULT" />
+   </cursor>
 </VBox>
