@@ -1,0 +1,12 @@
+.pane {
+    -fx-background-color: #08ffbc;
+}
+
+.slope {
+    -fx-fill: #797979;
+}
+
+.runway {
+    -fx-fill: white;
+}
+
