@@ -14,6 +14,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.TilePane;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import uk.ac.soton.comp2211.team_43_project.event.Error;
 
 /**
  * CreateRunwayPane creates a new pane to allow a user to input parameters for
@@ -89,15 +90,133 @@ public class CreateRunwayPane extends TilePane implements Initializable {
   @FXML
   public void confirm() {
     logger.info("creating new Runway");
-    Boolean away = dirField.getSelectionModel().getSelectedItem().equals("away");
+    float tora;
+    float toda;
+    float asda;
+    float lda;
+    float dt = 0;
+
+    //Error handling:
+
+    //RUNWAY DESIGNATOR
     String des = designatorField.getText();
-    int tora = Integer.parseInt(toraField.getText());
-    int toda = Integer.parseInt(todaField.getText());
-    int asda = Integer.parseInt(asdaField.getText());
-    int lda = Integer.parseInt(ldaField.getText());
-    int dt = Integer.parseInt(displacedField.getText());
+    if (des.equals("")) {
+      Error.error("Runway Designator must be declared.");
+      return;
+    }
 
+    if (des.length() == 3 || des.length() == 2) {
+      try {
+        int num = Integer.parseInt(des.substring(0, 2));
+        if (num <= 36 && num >= 1) {
+          if (des.length() == 3) {
+            char side = des.charAt(2);
+            if (!(side == 'L' || side == 'C' || side == 'R')) {
+              Error.error("Invalid runway designator - position must be one of: L/C/R.");
+              return;
+            }
+          }
+        } else {
+          Error.error("Invalid runway designator - number must be in range 1-36.");
+          return;
+        }
+      } catch (Exception e) {
+        Error.error("Invalid runway designator - must be a valid number.");
+        return;
+      }
+    } else {
+      Error.error("Invalid runway designator - must be of format XX[C/L/R].");
+      return;
+    }
 
+    //TORA
+    String toraText = toraField.getText();
+    if (toraText.equals("")) {
+      Error.error("TORA must be declared.");
+      return;
+    }
+
+    try {
+      tora = Float.parseFloat(toraText);
+      if (tora < 0) {
+        Error.error("Invalid TORA input - must be a positive number.");
+        return;
+      }
+    } catch (Exception e) {
+      Error.error("Invalid TORA input.");
+      return;
+    }
+
+    //TODA
+    String todaText = todaField.getText();
+    if (todaText.equals("")) {
+      Error.error("TODA must be declared");
+      return;
+    }
+
+    try {
+      toda = Float.parseFloat(todaText);
+      if (toda < 0) {
+        Error.error("Invalid TODA input - must be a positive number.");
+        return;
+      }
+    } catch (Exception e) {
+      Error.error("Invalid TODA input.");
+      return;
+    }
+
+    //ASDA
+    String asdaText = asdaField.getText();
+    if (asdaText.equals("")) {
+      Error.error("ASDA must be declared");
+      return;
+    }
+
+    try {
+      asda = Float.parseFloat(asdaText);
+      if (asda < 0) {
+        Error.error("Invalid ASDA input - must be a positive number.");
+        return;
+      }
+    } catch (Exception e) {
+      Error.error("Invalid ASDA input.");
+      return;
+    }
+
+    //LDA
+    String ldaText  = ldaField.getText();
+    if (ldaText.equals("")) {
+      Error.error("LDA must be declared");
+      return;
+    }
+
+    try {
+      lda = Float.parseFloat(ldaText);
+      if (lda < 0) {
+        Error.error("Invalid LDA input - must be a positive number.");
+        return;
+      }
+    } catch (Exception e) {
+      Error.error("Invalid LDA input.");
+      return;
+    }
+
+    //DISPLACED THRESHOLD
+    String dtText   = displacedField.getText();
+    if (!dtText.equals("")) {
+      try {
+        dt = Float.parseFloat(dtText);
+        if (dt < 0) {
+          Error.error("Invalid Displaced Threshold input - must be a positive number.");
+          return;
+        }
+      } catch (Exception e) {
+        Error.error("Invalid Displaced Threshold input.");
+        return;
+      }
+    }
+
+    Boolean away = dirField.getSelectionModel().getSelectedItem().equals("away");
     window.addRunway(des, away, tora, toda, asda, lda, dt);
     close();
   }

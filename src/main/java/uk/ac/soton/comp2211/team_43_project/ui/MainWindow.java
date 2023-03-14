@@ -234,7 +234,7 @@ public class MainWindow implements Initializable {
    * @param lda LDA
    * @param dt displaced threshold
    */
-  public void addRunway(String des, Boolean away, int tora, int toda, int asda, int lda, int dt) {
+  public void addRunway(String des, Boolean away, float tora, float toda, float asda, float lda, float dt) {
     Runway runway = new Runway(des, away, tora, toda, asda, lda, dt);
     data.addRunway(runway);
   }
