@@ -49,20 +49,20 @@ public class RunwayPane extends Pane implements Initializable {
   @FXML protected StackPane indicatorPane;
 
 
-  protected Integer tora;
-  protected Integer toda;
-  protected Integer asda;
-  protected Integer lda;
-  protected Integer stopway;
-  protected Integer clearway;
-  protected Integer displacedThreshold;
+  protected Float tora;
+  protected Float toda;
+  protected Float asda;
+  protected Float lda;
+  protected Float stopway;
+  protected Float clearway;
+  protected Float displacedThreshold;
   protected Integer thresholdLength = Data.getThresholdLength();
   protected Boolean rotated = false;
   protected Boolean away;
   protected Boolean isStacked = false;
   protected final float scaling = Data.getScaling();
 
-  Parent root = null;
+  Parent root;
   protected Runway runway;
 
   /**
@@ -205,18 +205,18 @@ public class RunwayPane extends Pane implements Initializable {
   private void updateParameter(Label text,
                                Line indicator,
                                HBox box,
-                               Integer parameter,
+                               Float parameter,
                                String parameterName,
                                float[] paramArray,
                                float[] ifAway) {
     text.setText(parameterName + " " + parameter + "m");
     indicator.setEndX(parameter  * scaling);
-    for (int i = 0; i < paramArray.length; i++) {
-      box.setTranslateX(box.getTranslateX() + (paramArray[i]  * scaling));
+    for (float v : paramArray) {
+      box.setTranslateX(box.getTranslateX() + (v * scaling));
     }
     if (!away) {
-      for (int i = 0; i < ifAway.length; i++) {
-        box.setTranslateX(box.getTranslateX() + (ifAway[i]  * scaling));
+      for (float v : ifAway) {
+        box.setTranslateX(box.getTranslateX() + (v * scaling));
       }
     }
   }

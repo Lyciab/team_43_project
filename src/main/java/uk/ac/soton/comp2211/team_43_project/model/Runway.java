@@ -7,13 +7,20 @@ public class Runway {
 
   private final String designator;
   private final Boolean away;
-  private int toda;
-  private int tora;
-  private int asda;
-  private int lda;
-  private int displacedThreshold;
-  private int clearway;
-  private int stopway;
+  private float
+      toda;
+  private float
+      tora;
+  private float
+      asda;
+  private float
+      lda;
+  private float
+      displacedThreshold;
+  private float
+      clearway;
+  private float
+      stopway;
 
   /**
    * Create a new runway.
@@ -27,7 +34,12 @@ public class Runway {
    * @param displacedThreshold the displaced threshold
    */
   public Runway(String designator, Boolean away,
-                int tora, int toda, int asda, int lda, int displacedThreshold) {
+                float
+                    tora, float
+                    toda, float
+                    asda, float
+                    lda, float
+                    displacedThreshold) {
     this.designator = designator;
     this.tora = tora;
     this.toda = toda;
@@ -49,7 +61,8 @@ public class Runway {
 
   }
 
-  public int getTora() {
+  public float
+  getTora() {
     return tora;
   }
 
@@ -57,27 +70,33 @@ public class Runway {
     return designator;
   }
 
-  public int getAsda() {
+  public float
+  getAsda() {
     return asda;
   }
 
-  public int getClearway() {
+  public float
+  getClearway() {
     return clearway;
   }
 
-  public int getDisplacedThreshold() {
+  public float
+  getDisplacedThreshold() {
     return displacedThreshold;
   }
 
-  public int getLda() {
+  public float
+  getLda() {
     return lda;
   }
 
-  public int getStopway() {
+  public float
+  getStopway() {
     return stopway;
   }
 
-  public int getToda() {
+  public float
+  getToda() {
     return toda;
   }
 
